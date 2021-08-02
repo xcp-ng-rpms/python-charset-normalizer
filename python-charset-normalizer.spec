@@ -1,5 +1,5 @@
 Name:           python-charset-normalizer
-Version:        2.0.3
+Version:        2.0.4
 Release:        1%{?dist}
 Summary:        The Real First Universal Charset Detector
 
@@ -11,7 +11,6 @@ BuildArch:      noarch
 BuildRequires:  python3-devel
 BuildRequires:  pyproject-rpm-macros
 BuildRequires:  python3dist(pytest)
-BuildRequires:  dos2unix
 
 
 %description
@@ -33,9 +32,6 @@ library provides codecs are supported.
 %autosetup -n charset_normalizer-%{version}
 # Remove pytest-cov settings from setup.cfg
 sed -i "/addopts = --cov/d" setup.cfg
-# Fix line endings in readme
-# https://github.com/Ousret/charset_normalizer/issues/66
-dos2unix README.md
 
 %generate_buildrequires
 %pyproject_buildrequires -r
@@ -56,5 +52,9 @@ dos2unix README.md
 %{_bindir}/normalizer
 
 %changelog
+* Mon Aug 02 2021 Lumír Balhar <lbalhar@redhat.com> - 2.0.4-1
+- Update to 2.0.4
+Resolves: rhbz#1988575
+
 * Wed Jul 21 2021 Lumír Balhar <lbalhar@redhat.com> - 2.0.3-1
 - Initial package
