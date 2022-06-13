@@ -1,6 +1,6 @@
 Name:           python-charset-normalizer
 Version:        2.0.12
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        The Real First Universal Charset Detector
 
 License:        MIT
@@ -52,6 +52,9 @@ sed -i "/addopts = --cov/d" setup.cfg
 %{_bindir}/normalizer
 
 %changelog
+* Mon Jun 13 2022 Python Maint <python-maint@redhat.com> - 2.0.12-2
+- Rebuilt for Python 3.11
+
 * Mon Feb 14 2022 Lumír Balhar <lbalhar@redhat.com> - 2.0.12-1
 - Update to 2.0.12
 Resolves: rhbz#2053838
