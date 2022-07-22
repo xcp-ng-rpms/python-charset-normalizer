@@ -1,6 +1,6 @@
 Name:           python-charset-normalizer
 Version:        2.1.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        The Real First Universal Charset Detector
 
 License:        MIT
@@ -52,6 +52,9 @@ sed -i "/addopts = --cov/d" setup.cfg
 %{_bindir}/normalizer
 
 %changelog
+* Fri Jul 22 2022 Fedora Release Engineering <releng@fedoraproject.org> - 2.1.0-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_37_Mass_Rebuild
+
 * Mon Jun 20 2022 Lumír Balhar <lbalhar@redhat.com> - 2.1.0-1
 - Update to 2.1.0
 Resolves: rhbz#2098481
