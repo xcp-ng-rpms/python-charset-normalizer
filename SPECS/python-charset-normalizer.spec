@@ -1,7 +1,7 @@
 %global package_speccommit d2435ce0c6269090964e333a98d73f3c06ccd0ca
 %global usver 2.1.0
 %global xsver 4
-%global xsrel %{xsver}%{?xscount}%{?xshash}
+%global xsrel %{xsver}.1%{?xscount}%{?xshash}
 Name:           python-charset-normalizer
 Version:        2.1.0
 Release: %{?xsrel}%{?dist}
@@ -54,14 +54,14 @@ echo "from setuptools import setup
 setup(name=\"%{name}\",
       version='%{version}',
      )" > ./setup.py
-/usr/bin/python3 -Bs %{SOURCE1} /builddir/build /BUILD/charset_normalizer-%{version}/pyproject-wheeldir
+/usr/bin/python3 -Bs %{SOURCE1} %{_builddir}/charset_normalizer-%{version}/pyproject-wheeldir
 %else
 %pyproject_wheel
 %endif
 
 %install
 %if 0%{?xenserver} < 9
-/usr/bin/python3 -m pip install --root %{buildroot} --prefix /usr --no-deps --disable-pip-version-check --verbose --ignore-installed --no-index --no-cache-dir --find-links /builddir/build/BUILD/charset_normalizer-%{version}/pyproject-wheeldir
+/usr/bin/python3 -m pip install --root %{buildroot} --prefix /usr --no-deps --disable-pip-version-check --verbose --ignore-installed --no-index --no-cache-dir --find-links %{_builddir}/charset_normalizer-%{version}/pyproject-wheeldir
 %else
 %pyproject_install
 %pyproject_save_files charset_normalizer
@@ -120,6 +120,9 @@ find %{buildroot}%{python3_sitelib}/charset_normalizer
 %endif
 
 %changelog
+* Fri Jan 24 2025 Yann Dirson <yann.dirson@vates.tech> - 2.1.0-4.1
+- Fix build invocation using hardcoded (and buggy) paths
+
 * Mon Aug 19 2024 Marcus Granado <marcus.granado@cloud.com> - 2.1.0-4
 - Bump release and rebuild
 
